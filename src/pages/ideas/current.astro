@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import IdeasList from '../../components/IdeasList.svelte';
+
+// TODO: This should be moved to a server-side configuration
+const currentSessionDate = "2025-04-05T21:00:00.000Z";
+const ideasUrl = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjsc6E8vghwgdNyo0kZ-hYD1BfIVIB0lQBmwRpb7Yi9-QPzfe3i92zojGIRUsMDw11CvGmv5ww9GcNKKLrGxSxICt6lOkdXwJcX8F8ExVTL7gKIQl_cW0SaSiBXoAODHAgYvnGWqDzs7Qx8uZn-nFhWrIkDECJdUDpmUx0stuQgWjCKcVB9NoC3gb2Yh4cnDoCMdKQAhnMGiXZVIMliaM7tneAir-pzn0wG8fzxrYMeLroWguAlat8TEcj8eFKAr4_33VNj_d56RoZZDajoERATKW1dHGVV354Ccdrd&lib=M3ZA2djfp3CN43-Hxx064tL6bRyyZ2oqJ";
+---
+
+<Layout>
+  <div class="min-h-screen bg-gray-50 py-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <h1 class="text-2xl font-bold text-gray-900 mb-4 text-center">Ιδέες για την τρέχουσα συνεδρίαση</h1>
+        <!-- Προβολή ιδεών σε μορφή πίνακα στο google sheets: href link -->
+        <div class="mb-4 text-center">
+        <a href="https://docs.google.com/spreadsheets/d/14JRJ4K6Zgrem4qRlANFUPNra-jzBu00M-sODQeQgJ20/edit?resourcekey=&gid=1567615975#gid=1567615975" target="_blank" class="underline text-blue-500 hover:text-blue-600">
+        Άνοιγμα σε μορφή πίνακα στο google sheets
+      </a></div>
+        <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
+          
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-4 w-4 text-blue-400 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-2">
+              <p class="text-sm text-blue-700">
+                Σημείωση: Μόνο οι ιδέες που υποβλήθηκαν μέχρι 3 ημέρες πριν τη συνεδρίαση εμφανίζονται εδώ. 
+                Οι ιδέες που υποβλήθηκαν μετά από αυτή την προθεσμία θα μεταφερθούν στην επόμενη συνεδρίαση.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <IdeasList client:load ideasUrl={ideasUrl} currentSessionDate={currentSessionDate} />
+
+      
+    </div>
+  </div>
+</Layout> 
